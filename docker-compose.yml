@@ -1,0 +1,34 @@
+
+version: '3'
+services:
+  db_web:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: Banking.Webservice
+      MYSQL_USER: userroot
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - "4500:3306"
+    expose:
+      - "4500"
+    volumes:
+      - db_web:/var/lib/mysql
+  db_voucher:
+        image: mysql:5.7
+        restart: always
+        environment:
+          MYSQL_DATABASE: voucher.service
+          MYSQL_USER: userroot
+          MYSQL_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: 'password'
+        ports:
+          - "4501:3306"
+        expose:
+          - "4501"
+        volumes:
+          - db_vc:/var/lib/mysql
+volumes:
+  db_web:
+  db_vc:
